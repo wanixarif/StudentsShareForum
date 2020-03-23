@@ -1,0 +1,193 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+
+<!--Main Navigation-->
+{% block content %}
+
+
+
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+<style>
+    .mt-9 {
+        margin-top: 6rem;
+    }
+</style>
+
+<!-- 
+ <button class=" btn btn-success">Success</button> -->
+
+<!--Section: Post-->
+<section class="mt">
+
+
+    <!--Grid row-->
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 card mb-4 wow fadeIn">
+
+            <!--Card content-->
+            <div class="card-body">
+                <input type="text" style="width: 0rem; height:0rem; border:none;" class="p-0 form-control disabled"
+                    value="{{labpost.postbody}}" id="myInput">
+                <p class="h3 my-2 text-uppercase">
+                    {{labpost.title}}
+                    <small style=" font-size:15px; float: right;" class="text-upper bold lead">
+                        {{labpost.stream}} | SEM {{labpost.semester}} | <strong> {{labpost.subject}} </strong>
+                    </small>
+                </p><br>
+                <p class="p-2 text-justify text-monospace">{{labpost.description}}</p>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <a class="ml-2 mb-2 mr-2" style="float:right "><i
+                                style="background: green; border-radius:50% ; color:white; padding:8px; "
+                                class="success fas fa-clone" onclick="myFunction();"></i></a>
+                        {% if labpost.file %}
+                        <a download target="_blank" class="mb-2 ml-2" style="float:right "
+                            href="{{labpost.file.url}}"><i
+                                style="background: red; border-radius:50% ; color:white; padding:8px; "
+                                class="success fas fa-download" "></i></a>
+                    {% endif %}
+                        <a class=" mb-2 ml-2" style="float:right "><i
+                                    style="background: blue; border-radius:50% ; color:white; padding:8px; "
+                                    class="success fas fa-share" "></i></a>
+
+                    </div>
+                    <div class=" col-xl-12 col-md-12 col-xs-12">
+                                    <pre><code class="{{labpost.language}}">{{labpost.postbody|linebreaks}}</code></pre>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+        <!--Grid column-->
+        <div class="col-lg-12 col-md-12">
+            <!--Card-->
+            <div class="card mb-4 wow fadeIn">
+
+                <div class="card-header font-weight-bold">
+                    <span>{{labpost.date_posted|date:'M d Y | H:i'}}</span>
+                    <span class="pull-right">
+                        <a href="">
+                            <i class="fab fa-facebook-f mr-2"></i>
+                        </a>
+                        <a href="">
+                            <i class="fab fa-twitter mr-2"></i>
+                        </a>
+                        <a href="">
+                            <i class="fab fa-instagram mr-2"></i>
+                        </a>
+                        <a href="">
+                            <i class="fab fa-linkedin-in mr-2"></i>
+                        </a>
+                    </span>
+                </div>
+
+                <!--Card content-->
+                <div class="card-body">
+
+                    <div class="media d-block d-md-flex mt-3">
+                        <img class="d-flex mb-3 mx-auto z-depth-1" src="#" alt="Generic placeholder image"
+                            style="width: 100px;">
+                        <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                            <h5 class="mt-0 font-weight-bold">About {{labpost.author}}
+                            </h5>
+                            Add about in profiles when creating profiles.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--/.Card-->
+        </div>
+
+        <!--/.Card-->
+    </div>
+
+</section>
+<!--Section: Post-->
+{% if labpost.postbody|length < 1009 %}
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+{% endif %}
+
+
+
+
+
+
+
+<script>
+    function myFunction() {
+
+        var copyText = document.getElementById("myInput");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        /For mobile devices/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+
+
+
+    }
+
+    $(".success").click(function () {
+
+        toastr.success('', 'Success!', {
+            timeOut: 1000,
+            preventDuplicates: true,
+            progressBar: true,
+        })
+
+    });
+
+    $(".error").click(function () {
+
+
+        toastr.error('Downloading File', 'Success!', {
+            timeOut: 1000,
+            preventDuplicates: true,
+            progressBar: true,
+        })
+
+    });
+
+
+    $(".info").click(function () {
+
+        toastr.info('It is for your kind information', 'Information', {
+            timeOut: 5000
+        })
+
+    });
+
+
+    $(".warning").click(function () {
+
+        toastr.warning('It is for your kind warning', 'Warning', {
+            timeOut: 5000
+        })
+
+    });
+</script>
+{% endblock %}
