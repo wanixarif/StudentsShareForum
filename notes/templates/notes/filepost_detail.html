@@ -1,0 +1,200 @@
+{% extends "notes/base.html" %}
+
+
+
+
+{% block content %}
+<!--Section: Cards-->
+<section class="text-center">
+    <style>
+        .myfileshadow {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        }
+    </style>
+    <div class="card p-3 pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-md-8 text-left col-sm-8 col-xs-7">
+                    <h1>{{ filepost.title }} </h1>
+                </div>
+                <div class="col-xl-4 col-md-4  col-sm-4 text-right col-xs-5">
+                    <p> {{ filepost.subject }}| {{ filepost.stream }} |
+                        {{ filepost.semester}} </p>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+                    <p class="lead text-justify">{{ filepost.description }}</p>
+                </div>
+                <div class="col-md-12 col-lg-12">
+                    <p class="lead text-right"> ~ Posted by: {{ filepost.author }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    <!--Grid row-->
+
+    <div class="card p-3 pt-5">
+        <div class="row mb-4 wow fadeIn">
+            <!--Grid column-->
+            {% if filepost.file0  %}
+            <!--Card-->
+            <div class="col-lg-3 col-md-4 col-xs-5 mb-4">
+                <a download href="{{filepost.file0.url}}">
+                    <figure class="figure ">
+                        <div class="image_carousel">
+                            <div class="view overlay zoom">
+                                <img src="http://icons.iconarchive.com/icons/zhoolego/material/512/Filetype-Docs-icon.png"
+                                    class="figure-img thumbnail " style="height: 200px"
+                                    alt=" {{filepost.file0.url|cut:"/media/filepost/"}}">
+
+                            </div>
+                            <figcaption style="font-weight:900;" class="figure-caption">
+                                <b>{{filepost.file0.url|cut:"/media/filepost/"}}</b></figcaption>
+                    </figure>
+                </a>
+            </div>
+
+            {% endif %}
+
+            {% if filepost.file1 %}
+            <!--Card-->
+            <div class="col-lg-3 col-md-4 col-xs-5 mb-4">
+                <a download href="{{filepost.file1.url}}">
+                    <figure class="figure ">
+                        <div class="image_carousel">
+                            <div class="view overlay zoom">
+                                <img src="http://icons.iconarchive.com/icons/zhoolego/material/512/Filetype-Docs-icon.png"
+                                    class="figure-img thumbnail " style="height: 200px"
+                                    alt=" {{filepost.file1.url|cut:"/media/filepost/"}}">
+
+                            </div>
+                            <figcaption style="font-weight:900;" class="figure-caption">
+                                <b>{{filepost.file1.url|cut:"/media/filepost/"}}</b></figcaption>
+                    </figure>
+                </a>
+            </div>
+
+            {% endif %}
+
+
+            {% if filepost.file2  %}
+            <!--Card-->
+            <div class="col-lg-3 col-md-4 col-xs-5 mb-4">
+                <a download href="{{filepost.file2.url}}">
+                    <figure class="figure ">
+                        <div class="image_carousel">
+                            <div class="view overlay zoom">
+                                <img src="http://icons.iconarchive.com/icons/zhoolego/material/512/Filetype-Docs-icon.png"
+                                    class="figure-img thumbnail " style="height: 200px"
+                                    alt=" {{filepost.file2.url|cut:"/media/filepost/"}}">
+
+                            </div>
+                            <figcaption style="font-weight:900;" class="figure-caption">
+                                <b>{{filepost.file2.url|cut:"/media/filepost/"}}</b></figcaption>
+                    </figure>
+                </a>
+            </div>
+
+            {% endif %}
+
+
+            {% if filepost.file3  %}
+            <!--Card-->
+            <div class="col-lg-3 col-md-4 col-xs-5 mb-4">
+                <a download href="{{filepost.file3.url}}">
+                    <figure class="figure ">
+                        <div class="image_carousel">
+                            <div class="view overlay zoom">
+                                <img src="http://icons.iconarchive.com/icons/zhoolego/material/512/Filetype-Docs-icon.png"
+                                    class="figure-img thumbnail " style="height: 200px"
+                                    alt=" {{filepost.file3.url|cut:"/media/filepost/"}}">
+
+                            </div>
+                            <figcaption style="font-weight:900;" class="figure-caption">
+                                <b>{{filepost.file3.url|cut:"/media/filepost/"}}</b></figcaption>
+                    </figure>
+                </a>
+            </div>
+
+            {% endif %}
+
+
+            {% if filepost.file4 %}
+            <!--Card-->
+            <div class="col-lg-3 col-md-4 col-xs-5 mb-4">
+                <a download href="{{filepost.file4.url}}">
+                    <figure class="figure ">
+                        <div class="image_carousel">
+                            <div class="view overlay zoom">
+                                <img src="http://icons.iconarchive.com/icons/zhoolego/material/512/Filetype-Docs-icon.png"
+                                    class="figure-img thumbnail " style="height: 200px"
+                                    alt=" {{filepost.file4.url|cut:"/media/filepost/"}}">
+
+                            </div>
+                            <figcaption style="font-weight:900;" class="figure-caption">
+                                <b>{{filepost.file4.url|cut:"/media/filepost/"}}</b></figcaption>
+                    </figure>
+                </a>
+            </div>
+
+            {% endif %}
+
+
+            {% if filepost.file5 %}
+            <!--Card-->
+            <div class="col-lg-3 col-md-4 col-xs-5 mb-4">
+                <a download href="{{filepost.file5.url}}">
+                    <figure class="figure ">
+                        <div class="image_carousel">
+                            <div class="view overlay zoom">
+                                <img src="http://icons.iconarchive.com/icons/zhoolego/material/512/Filetype-Docs-icon.png"
+                                    class="figure-img thumbnail " style="height: 200px"
+                                    alt=" {{filepost.file5.url|cut:"/media/filepost/"}}">
+
+                            </div>
+                            <figcaption style="font-weight:900;" class="figure-caption">
+                                <b>{{filepost.file5.url|cut:"/media/filepost/"}}</b></figcaption>
+                    </figure>
+                </a>
+            </div>
+
+            {% endif %}
+
+
+            {% if filepost.file6  %}
+            <!--Card-->
+            <div class="col-lg-3 col-md-4 col-xs-5 mb-4">
+                <a download href="{{filepost.file6.url}}">
+                    <figure class="figure ">
+                        <div class="image_carousel">
+                            <div class="view overlay zoom">
+                                <img src="http://icons.iconarchive.com/icons/zhoolego/material/512/Filetype-Docs-icon.png"
+                                    class="figure-img thumbnail " style="height: 200px"
+                                    alt=" {{filepost.file6.url|cut:"/media/filepost/"}}">
+
+                            </div>
+                            <figcaption style="font-weight:900;" class="figure-caption">
+                                <b>{{filepost.file6.url|cut:"/media/filepost/"}}</b></figcaption>
+                    </figure>
+                </a>
+            </div>
+
+            {% endif %}
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</section>
+<!--Section: Cards-->
+{% endblock %}

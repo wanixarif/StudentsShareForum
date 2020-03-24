@@ -1,0 +1,45 @@
+<section class="text-center">
+
+    <!--Grid row-->
+    <div class="row mb-4 wow fadeIn">
+        {% for post in posts.all|slice:":3"  %}
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+                <!--Card image-->
+                <div class="view overlay">
+                    <img responsive
+                        src="http://www.ultimateboardprep.com/wp-content/uploads/2015/05/icon_for_StudyMaterials.jpg"
+                        class="card-img-top " alt="" style="height: 297px; margin-top: -12px; margin-bottom: -43px;">
+                    <a href="{% url 'material' post.id %}">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <!--Card content-->
+                <div class="card-body">
+                    <!--Title-->
+                    <h4 class="card-title">{{post.title}}</h4>
+                    <!--Text-->
+                    <p class="card-text">{{post.description}}</p>
+                    <a href="" " class=" btn btn-primary btn-md">Free
+                        download
+                        <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+
+            </div>
+            <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+        {% empty %}
+        <p class="text-center font-bold">No posts yet<p>
+                {% endfor %}
+
+
+    </div>
+</section>

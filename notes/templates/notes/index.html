@@ -18,8 +18,7 @@
                 and written
                 versions available. Create your own, stunning website.</strong>
         </p>
-        <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/"
-            class="btn btn-outline-white btn-lg">Start free tutorial
+        <a " href=" {% url 'materials' %}" class="btn btn-outline-white btn-lg">Check out Materials
             <i class="fas fa-graduation-cap ml-2"></i>
         </a>
 
@@ -27,15 +26,27 @@
     <!-- Content -->
 </section>
 <!--Section: Jumbotron-->
-
 <hr class="my-5">
-
 <!--Section: Cards-->
 <section class="text-center">
 
+
+
+    <h1 class="mb-4 text-left">
+        <strong>Recent uploads in course materials:</strong>
+    </h1><br>
+    <div class="result ">
+
+    </div>
+    <br>
+    <hr><br>
+    <h1 class="mb-4 text-left">
+        <strong>Recent uploads in labs:</strong>
+    </h1>
+
     <!--Grid row-->
     <div class="row mb-4 wow fadeIn">
-        {% for post in posts.all %}
+        {% for post in posts.all|slice:":3"  %}
         <!--Grid column-->
         <div class="col-lg-4 col-md-12 mb-4">
 
@@ -43,11 +54,12 @@
             <div class="card">
 
                 <!--Card image-->
-                <div class="view overlay">
-                    <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-angular.jpg" class="card-img-top"
-                        alt="">
-                    <a href="{% url 'full_post' post.id %}" >
-                        <div class="mask rgba-white-slight"></div>
+                <div class="view overlay p-2 mt-2">
+                    <img responsive
+                        src="https://rampages.us/pharmaceutical-engineering/wp-content/themes/egr-faculty/images/mech-icon.png"
+                        class="card-img-top px-5" alt="">
+
+                    <div class="mask rgba-white-slight"></div>
                     </a>
                 </div>
 
@@ -57,84 +69,49 @@
                     <h4 class="card-title">{{post.title}}</h4>
                     <!--Text-->
                     <p class="card-text">{{post.description}}</p>
-                    <a href="https://mdbootstrap.com/angular/" target="_blank" class="btn btn-primary btn-md">Free
+                    <a href="https://mdbootstrap.com/angular/" style="background: #3677bc; color:white;"
+                        class=" btn btn-md">Free
                         download
                         <i class="fas fa-download ml-2"></i>
                     </a>
                 </div>
-
+                <a class="stretched-link" href="{% url 'full_post' post.id %}"></a>
             </div>
             <!--/.Card-->
 
         </div>
         <!--Grid column-->
+        {% empty %}
+        <p class="text-center font-bold">No posts yet, Go ahead create one!</p>
         {% endfor %}
 
 
     </div>
-    <!--Grid row-->
-
-      <!--Pagination-->
-
-      <nav class="d-flex justify-content-center wow fadeIn">
-          <ul class="pagination pg-blue">
 
 
-              {% if is_paginated %}
-              {% if not page_obj.has_previous %}
-              <li class="page-item disabled">
-                  <a class="page-link" href="" aria-label=" Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                  </a>
-              </li>
-              {% endif %}
-              {% if page_obj.has_previous %}
-              <li class="page-item">
-                  <a class="page-link" href="?page=1">First</a>
-              </li>
-              <li class="page-item ">
-                  <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                  </a>
-              </li>
-              {% endif %}
-              {% for num in page_obj.paginator.page_range %}
-              {% if page_obj.number == num %}
-              <li class="page-item active">
-                  <a class="page-link" href="?page={{num}}">{{num}}</a>
-              </li>
-              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-              <li class="page-item">
-                  <a class="page-link" href="?page={{num}}">{{num}}</a>
-              </li>
-              {% endif %}
-              {% endfor %}
 
-              {% if page_obj.has_next %}
-              <li class="page-item">
-                  <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                  </a>
-              </li>
-              <li class="page-item">
-                  <a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Last</a>
-              </li>
-              {% endif %}
-              {% if not page_obj.has_next %}
-              <li class="page-item disabled">
-                  <a class="page-link" href="" aria-label=" Previous">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                  </a>
-              </li>
-              {% endif %}
-              {% endif %}
 
-    <!--Pagination-->
+
+    </div>
+
 
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    function getlabpost() {
+
+        $.ajax({
+            type: "GET",
+            url: "/notes/recentfileposts/",
+            success: function (data) {
+                $('.result').html(data)
+            }
+        });
+    }
+    $(document).ready(function () {
+        getlabpost()
+    });
+</script>
+
 <!--Section: Cards-->
 {% endblock %}

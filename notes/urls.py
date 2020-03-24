@@ -16,11 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import fullpost, index, PostCreateView
+from .views import fullpost, index, PostCreateView, filefullpost, materiallistview, labpostlistview, FilePostCreateView, recentfileposts
 
 urlpatterns = [
     path('', index.as_view(), name='index'),
     path('about/', views.about, name="about"),
+    path('materials/', materiallistview.as_view(), name="materials"),
+    path('labposts/', labpostlistview.as_view(), name="labposts"),
     path('fullpost/<int:pk>', fullpost.as_view(), name='full_post'),
     path('newpost/', PostCreateView.as_view(), name="newpost"),
+    path('material/<int:pk>', filefullpost.as_view(), name='material'),
+    path('materialpost/', FilePostCreateView.as_view(), name="materialpost"),
+    path('recentfileposts/', recentfileposts.as_view(), name='recentfileposts'),
+
 ]
