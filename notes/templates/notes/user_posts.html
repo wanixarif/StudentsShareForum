@@ -1,43 +1,31 @@
 {% extends "notes/base.html" %}
 {% block content %}
 <!--Section: Jumbotron-->
-<section class="card wow fadeIn">
+<section class="card wow fadeIn"
+    style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
 
     <!-- Content -->
-    <div class="card-body text-white text-center py-3 px-3">
+    <div class="card-body text-white text-center py-5 px-5 my-5">
 
-        <!--Blue select-->
-        <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search here..">
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-            <option value="4">Option 4</option>
-            <option value="5">Option 5</option>
-        </select>
-
-        <label class="mdb-main-label">Example label</label>
-
-        <select class="mdb-select" searchable="Search here..">
-            <option value="1" disabled selected>Choose your option</option>
-            <option value="2" data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-1.jpg"
-                class="rounded-circle">
-                example
-                1</option>
-            <option value="3" data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
-                class="rounded-circle">
-                example
-                2</option>
-            <option value="4" data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-3.jpg"
-                class="rounded-circle">
-                example
-                1</option>
+        <h1 class="mb-4">
+            <strong>Learn Bootstrap 4 with MDB</strong>
+        </h1>
+        <p class="mb-4">
+            <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video
+                and written
+                versions available. Create your own, stunning website.</strong>
+        </p>
+        <a " href=" {% url 'materials' %}" class="btn btn-outline-white btn-lg">Check out Materials
+            <i class="fas fa-graduation-cap ml-2"></i>
+        </a>
 
     </div>
     <!-- Content -->
 </section>
-<br>
+<!--Section: Jumbotron-->
+<hr class="my-5">
 <!--Section: Cards-->
-<section id="alllabposts" class="text-center">
+<section class="text-center">
 
     <!--Grid row-->
     <div class="row mb-4 wow fadeIn">

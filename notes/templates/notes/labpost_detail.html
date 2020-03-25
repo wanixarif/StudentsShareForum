@@ -45,22 +45,39 @@
                 <p class="p-2 text-justify text-monospace">{{labpost.description}}</p>
                 <div class="row">
                     <div class="col-md-12 col-xs-12">
-                        <a class="ml-2 mb-2 mr-2" style="float:right "><i
-                                style="background: green; border-radius:50% ; color:white; padding:8px; "
+                        <a class=" mb-2 mr-1" style="float:right "><i
+                                style="background: #ff6f00; border-radius:50% ; color:white; padding:8px; "
                                 class="success fas fa-clone" onclick="myFunction();"></i></a>
                         {% if labpost.file %}
-                        <a download target="_blank" class="mb-2 ml-2" style="float:right "
-                            href="{{labpost.file.url}}"><i
-                                style="background: red; border-radius:50% ; color:white; padding:8px; "
+                        <a download class="mb-2 mr-1" style="float:right " href="{{labpost.file.url}}"><i
+                                style="background: #00c853; border-radius:50% ; color:white; padding:8px; "
                                 class="success fas fa-download" "></i></a>
                     {% endif %}
-                        <a class=" mb-2 ml-2" style="float:right "><i
-                                    style="background: blue; border-radius:50% ; color:white; padding:8px; "
+                        <a class=" mb-2 mr-1" style="float:right "><i
+                                    style="background:#2962ff; border-radius:50% ; color:white; padding:8px; "
                                     class="success fas fa-share" "></i></a>
+                        {% if object.author == user %}
+                            <a class="  mb-2 mr-1" style="float:right " href="{% url 'update' object.id %}"><i
+                                        style="background:#6200ea; border-radius:50% ; color:white; padding:8px; "
+                                        class="fas fa-pen"></i>
+                        </a>
+
+                        <a class=" mb-2 mr-1" style="float:right " href="{% url 'delete' object.id %}"><i
+                                style="background:#ff1744; border-radius:50% ; color:white; padding:8px; "
+                                class="fas fa-trash"></i>
+                        </a>
+
+                        {% endif %}
+
+
+
+
+
+
 
                     </div>
                     <div class=" col-xl-12 col-md-12 col-xs-12">
-                                    <pre><code class="{{labpost.language}}">{{labpost.postbody|linebreaks}}</code></pre>
+                        <pre><code class="{{labpost.language}}">{{labpost.postbody|linebreaks}}</code></pre>
 
                     </div>
                 </div>
@@ -69,6 +86,9 @@
 
 
             </div>
+
+
+
 
         </div>
         <!--Grid column-->
@@ -93,6 +113,17 @@
                         </a>
                     </span>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
 
                 <!--Card content-->
                 <div class="card-body">

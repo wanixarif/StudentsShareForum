@@ -1,0 +1,66 @@
+{% extends "myapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    .imgcontainer {
+        height: 100%;
+        align-content: center;
+    }
+
+    .image_outer_container {
+        margin-top: auto;
+        margin-bottom: auto;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .image_inner_container {
+        border-radius: 50%;
+        padding: 5px;
+        background: #833ab4;
+        background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+        background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+    }
+
+    .image_inner_container img {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        border: 5px solid white;
+    }
+</style>
+<div class="content-section">
+    <div class="media">
+        <div class="imgcontainer">
+            <div class="d-flex justify-content-center h-100">
+                <div class="image_outer_container">
+
+                    <div class="image_inner_container">
+                        <img src="{{ user.profile.image.url }}"> </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Profile Info</legend>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

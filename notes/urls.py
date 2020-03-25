@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import fullpost, index, PostCreateView, filefullpost, materiallistview, labpostlistview, FilePostCreateView, recentfileposts
+from .views import *
 
 urlpatterns = [
     path('', index.as_view(), name='index'),
@@ -28,5 +28,15 @@ urlpatterns = [
     path('material/<int:pk>', filefullpost.as_view(), name='material'),
     path('materialpost/', FilePostCreateView.as_view(), name="materialpost"),
     path('recentfileposts/', recentfileposts.as_view(), name='recentfileposts'),
+    path("notes/fullpost/<int:pk>/update",
+         PostUpdateView.as_view(), name="update"),
+    path("notes/fullpost/<int:pk>/delete",
+         PostDeleteView.as_view(), name="delete"),
+    path("user/<str:username>", UserPostListView.as_view(), name="user_posts"),
+
+    path("category/sem/<int:semester>",
+         SemesterLabListView.as_view(), name="semester_lab"),
+    path("category/branch/<str:branch>",
+         BranchLabListView.as_view(), name="branch_lab"),
 
 ]
