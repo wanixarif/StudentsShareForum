@@ -1,40 +1,57 @@
 {% extends "notes/base.html" %}
 {% block content %}
-<!--Section: Jumbotron-->
-<section class="card wow fadeIn">
 
-    <!-- Content -->
-    <div class="card-body text-white text-center py-3 px-3">
+<div class="card p-3 pt-4">
+    <div class="container">
+        <div class="row">
 
-        <!--Blue select-->
-        <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search here..">
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-            <option value="4">Option 4</option>
-            <option value="5">Option 5</option>
-        </select>
+        </div>
+        <div class="row">
+        
+            <div class="input-group-prepend ml-2 mr-2">
+                <button class="btn btn-primary btn-md m-0 px-3 py-2 z-depth-0 dropdown-toggle" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Branch</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'branch_lab' "CSE" %}">CSE</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "ECE" %}">ECE</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "EEE" %}">EEE</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "MECH" %}">MECH</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "CV" %}">CV</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "BCA" %}">BCA</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "BBA" %}">BBA</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "MCA" %}">MCA</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "MBA" %}">MBA</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "LLB" %}">LLB</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "LLM" %}">LLM</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "B-ARCH" %}">B-ARCH</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "BBA-HEM" %}">BBA-HEM</a>
+                    <a class="dropdown-item" href="{% url 'branch_lab' "B-DES" %}">B-DES</a>
+                </div>
+            </div>
+            <div class="input-group-prepend ml-2 mr-2">
+                <button class="btn btn-primary btn-md m-0 px-3 py-2 z-depth-0 dropdown-toggle" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Semester</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'semester_lab' 1 %}">1</a>
+                    <a class="dropdown-item" href="{% url 'semester_lab' 2 %}">2</a>
+                    <a class="dropdown-item" href="{% url 'semester_lab' 3 %}">3</a>
+                    <a class="dropdown-item" href="{% url 'semester_lab' 4 %}">4</a>
+                    <a class="dropdown-item" href="{% url 'semester_lab' 5 %}">5</a>
+                    <a class="dropdown-item" href="{% url 'semester_lab' 6 %}">6</a>
+                    <a class="dropdown-item" href="{% url 'semester_lab' 7 %}">7</a>
+                    <a class="dropdown-item" href="{% url 'semester_lab' 8 %}">8</a>
 
-        <label class="mdb-main-label">Example label</label>
 
-        <select class="mdb-select" searchable="Search here..">
-            <option value="1" disabled selected>Choose your option</option>
-            <option value="2" data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-1.jpg"
-                class="rounded-circle">
-                example
-                1</option>
-            <option value="3" data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
-                class="rounded-circle">
-                example
-                2</option>
-            <option value="4" data-icon="https://mdbootstrap.com/img/Photos/Avatars/avatar-3.jpg"
-                class="rounded-circle">
-                example
-                1</option>
+
+                </div>
+            </div>
+
+        </div>
 
     </div>
-    <!-- Content -->
-</section>
+</div>
 <br>
 <!--Section: Cards-->
 <section id="alllabposts" class="text-center">

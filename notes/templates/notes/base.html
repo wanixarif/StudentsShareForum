@@ -53,7 +53,7 @@
 
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link waves-effect" href="{% url 'index' %}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
@@ -65,17 +65,19 @@
                             <a class="nav-link waves-effect"
                                 href="{% url 'labposts' %}">Lab</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/">Free
-                                tutorials</a>
-                        </li>
                     </ul>
 
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect">
-                                <i class="fab fa-facebook-f"></i>
+                            <a href="{% url 'logout' %}" class="nav-link waves-effect">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'profile' %}" class="nav-link waves-effect">
+                                <i class="fas fa-user-edit"></i>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -88,6 +90,22 @@
                                <i class="fa fa-pen"></i>
                             </a>
                         </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a href="{%url 'login'%}"
+                            class="nav-link border border-light rounded waves-effect"
+                            >
+                            <i class="fas fa-user"></i>Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'register'%}"
+                            class="nav-link border border-light rounded waves-effect ml-2"
+                            >
+                            <i class="fas fa-user-plus"></i>Sign Up
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
 
                 </div>
@@ -102,7 +120,22 @@
     <!--Main layout-->
     <main class="mt-5 pt-5">
         <div class="container">
+
+            
+
+<br>
+
+
+
+
+
             {% block content %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+            {{ message }}</div>
+            {% endfor %}
+            {% endif %}
 
             {% endblock %}
 
@@ -115,14 +148,7 @@
 
         <!--Call to action-->
         <div class="pt-4">
-            <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-                role="button">Download MDB
-                <i class="fas fa-download ml-2"></i>
-            </a>
-            <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" role="button">Start
-                free tutorial
-                <i class="fas fa-graduation-cap ml-2"></i>
-            </a>
+            
         </div>
         <!--/.Call to action-->
 

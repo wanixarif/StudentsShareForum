@@ -2,20 +2,41 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<form method="POST">
-    {% csrf_token %}
-    <fieldset class="col-md-4">
-        <legend>Sign Up Now!</legend>
-        {{ form|crispy }}
-    </fieldset>
-    <div class="form-group">
-        <button class="btn btn-primary my-2" type="submit">Sign up</button>
-    </div>
-</form>
 
-<div class="col-md-4">
-    <small class="text-muted">Have an account? <a href={% url 'login' %}>Login</a></small>
+<div class="card ml-auto mr-auto " style="max-width:430px;">
+<!-- Default form login -->
+<form class="text-center border border-light p-5" method="POST">
+     {% csrf_token %}
+    <p class="h4 mb-4">Log in</p>
+
+    {{form|crispy}}
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Sign Up</button>
+
+    <!-- Register -->
+    <p>Already a member?
+        <a href="{%url 'login'%}">Log In</a>
+    </p>
+
+</form>
+<!-- Default form login -->
 
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+         integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+     <script>
+         {% comment %} $(document).ready(function () { {% endcomment %}
+             $('#hint_id_username').attr("style", "visibility:hidden; height:0px;");
+             $('#hint_id_password1').attr("style", "visibility:hidden; height:0px;");
+            
+
+         {% comment %} }); {% endcomment %}
+     </script>
+
+
 
 {% endblock content %}
+
+
+
