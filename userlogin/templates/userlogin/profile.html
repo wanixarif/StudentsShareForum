@@ -34,9 +34,10 @@
         border: 5px solid white;
     }
 </style>
-<div class="content-section">
-    <div class="media">
-        <div class="imgcontainer">
+<div style="max-width: 600px;" class="card p-3 text-center ml-auto mr-auto">
+
+    <div class="media ">
+        <div class="imgcontainer ml-auto mr-auto">
             <div class="d-flex justify-content-center h-100">
                 <div class="image_outer_container">
 
@@ -45,16 +46,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
-        </div>
     </div>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Profile Info</legend>
             {{ u_form|crispy }}
             {{ p_form|crispy }}
         </fieldset>
@@ -63,4 +58,10 @@
         </div>
     </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+<script>
+    $('#hint_id_username').attr("style", "visibility:hidden; height:0px;");
+    $('#hint_id_password1').attr("style", "visibility:hidden; height:0px;");
+</script>
 {% endblock content %}
