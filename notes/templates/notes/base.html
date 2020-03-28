@@ -37,8 +37,8 @@
             <div class="container">
 
                 <!-- Brand -->
-                <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/">
-                    <strong class="blue-text">Projekt</strong>
+                <a class="navbar-brand waves-effect" href="{% url 'index' %}">
+                    <strong class="blue-text">Home</strong>
                 </a>
 
                 <!-- Collapse -->
@@ -54,11 +54,6 @@
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="{% url 'index' %}">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link waves-effect" href={% url 'materials' %}>Material</a>
                         </li>
                         <li class="nav-item">
@@ -71,23 +66,29 @@
                     <ul class="navbar-nav nav-flex-icons">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a href="{% url 'logout' %}" class="nav-link waves-effect">
-                                <i class="fas fa-sign-out-alt"></i>
+                            <a href="{% url 'newpost' %}" data-toggle="tooltip" title="New Post"
+                                class="nav-link  rounded waves-effect">
+                                <i class="fa fa-pen"></i>
                             </a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a href="{% url 'profile' %}" class="nav-link waves-effect">
+                            <a href="{% url 'materialpost' %}" data-toggle="tooltip" title="Upload Material"
+                                class="nav-link waves-effect">
+                                <i class="fa fa-upload"></i>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="{% url 'profile' %}" data-toggle="tooltip" title="Edit Profile"
+                                class="nav-link waves-effect">
                                 <i class="fas fa-user-edit"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'materialpost' %}" class="nav-link waves-effect">
-                                <i class="fa fa-upload"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{% url 'newpost' %}"  data-tooltip="New Post" class="nav-link  rounded waves-effect">
-                               <i class="fa fa-pen"></i>
+                            <a href="{% url 'logout' %}" data-toggle="tooltip" title="Log Out"
+                                class="nav-link waves-effect">
+                                <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
                         {% else %}
@@ -119,7 +120,26 @@
 
     <!--Main layout-->
     <main class="mt-5 pt-5">
+        
         <div class="container">
+            <!--Section: Jumbotron-->
+            <section class="card wow fadeIn"
+                style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+
+                <!-- Content -->
+                <div class="card-body text-white text-center px-5 ">
+
+                    <h1 class="mb-1">
+                        <strong>Welcome!</strong>
+                    </h1>
+                    <p class="mb-1">
+                        <strong>Keep Sharing !!</strong>
+                    </p>
+
+                </div>
+                <!-- Content -->
+            </section>
+            <!--Section: Jumbotron-->
 
             
 
@@ -152,48 +172,33 @@
         </div>
         <!--/.Call to action-->
 
-        <hr class="my-4">
+        <hr class="my-2">
 
         <!-- Social icons -->
         <div class="pb-4">
-            <a href="https://www.facebook.com/mdbootstrap">
-                <i class="fab fa-facebook-f mr-3"></i>
+            <a href="https:/instagram.com/thewanixarif">
+                <i class="fab fa-instagram mr-3"></i>
             </a>
 
-            <a href="https://twitter.com/MDBootstrap">
+            <!-- <a href="https://twitter.com/MDBootstrap">
                 <i class="fab fa-twitter mr-3"></i>
-            </a>
+            </a> -->
 
-            <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4">
+            <a href="https://www.youtube.com/channel/UCPtZqVRW1ZzesYwPoJtDJvQ">
                 <i class="fab fa-youtube mr-3"></i>
             </a>
 
-            <a href="https://plus.google.com/u/0/b/107863090883699620484">
-                <i class="fab fa-google-plus-g mr-3"></i>
-            </a>
 
-            <a href="https://dribbble.com/mdbootstrap">
-                <i class="fab fa-dribbble mr-3"></i>
-            </a>
-
-            <a href="https://pinterest.com/mdbootstrap">
-                <i class="fab fa-pinterest mr-3"></i>
-            </a>
-
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design">
+            <a href="https://github.com/wanixarif">
                 <i class="fab fa-github mr-3"></i>
-            </a>
-
-            <a href="http://codepen.io/mdbootstrap/">
-                <i class="fab fa-codepen mr-3"></i>
             </a>
         </div>
         <!-- Social icons -->
 
         <!--Copyright-->
         <div class="footer-copyright py-3">
-            © 2019 Copyright:
-            <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com </a>
+           
+           © <a href="htp://github.com/wanixarif"> Alphasoft</a>
         </div>
         <!--/.Copyright-->
 
@@ -213,6 +218,9 @@
     <script type="text/javascript">
         // Animations initialization
         new WOW().init();
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 </body>
 

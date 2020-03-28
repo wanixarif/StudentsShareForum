@@ -39,7 +39,8 @@
                 <p class="h3 my-2 text-uppercase">
                     {{labpost.title}}
                     <small style=" font-size:15px; float: right;" class="text-upper bold lead">
-                        {{labpost.stream}} | SEM {{labpost.semester}} | <strong> {{labpost.subject}} </strong>
+                      {{labpost.subject}} | <a href="{% url 'branch_lab' labpost.stream %}">{{labpost.stream}}</a>
+                      | <a href="{% url 'semester_lab' labpost.semester %}">SEM {{labpost.semester}}</a>
                     </small>
                 </p><br>
                 <p class="p-2 text-justify text-monospace">{{labpost.description}}</p>

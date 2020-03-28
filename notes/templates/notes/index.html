@@ -5,7 +5,7 @@
     style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
 
     <!-- Content -->
-    <div class="card-body text-white text-center py-5 px-5 my-5">
+    <!-- <div class="card-body text-white text-center py-5 px-5 my-5">
 
         <h1 class="mb-4">
             <strong>Learn Bootstrap 4 with MDB</strong>
@@ -22,73 +22,116 @@
             <i class="fas fa-graduation-cap ml-2"></i>
         </a>
 
-    </div>
+    </div> -->
     <!-- Content -->
 </section>
 <!--Section: Jumbotron-->
 <hr class="my-5">
 <!--Section: Cards-->
 <section class="text-center">
+    <div>
 
+        <h1 class="mb-4 text-left">
+            <strong>Recent posts in labs:</strong>
+        </h1>
 
+        <!--Grid row-->
+        <div class="row mb-4 wow fadeIn">
+            {% for post in labpost.all|slice:":3"  %}
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4">
 
-    <h1 class="mb-4 text-left">
-        <strong>Recent uploads in course materials:</strong>
-    </h1><br>
-    <div class="result ">
+                <!--Card-->
+                <div class="card">
 
-    </div>
-    <br>
-    <hr><br>
-    <h1 class="mb-4 text-left">
-        <strong>Recent uploads in labs:</strong>
-    </h1>
+                    <!--Card image-->
+                    <div class="view overlay p-2 mt-2">
+                                            <a  href="{% url 'full_post' post.id %}">
 
-    <!--Grid row-->
-    <div class="row mb-4 wow fadeIn">
-        {% for post in posts.all|slice:":3"  %}
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-12 mb-4">
+                        <img responsive
+                            src="https://rampages.us/pharmaceutical-engineering/wp-content/themes/egr-faculty/images/mech-icon.png"
+                            class="card-img-top px-5" alt="">
 
-            <!--Card-->
-            <div class="card">
+                        <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
 
-                <!--Card image-->
-                <div class="view overlay p-2 mt-2">
-                    <img responsive
-                        src="https://rampages.us/pharmaceutical-engineering/wp-content/themes/egr-faculty/images/mech-icon.png"
-                        class="card-img-top px-5" alt="">
-
-                    <div class="mask rgba-white-slight"></div>
-                    </a>
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">{{post.title}}</h4>
+                        <!--Text-->
+                        <p class="card-text">{{post.description}}</p>
+                        <a href="{% url 'full_post' post.id %}" style="background: #3677bc; color:white;"
+                            class=" btn btn-md">View Post
+                            <i class="fas fa-file ml-2"></i>
+                        </a>
+                        <p class="float mt-2 mb--5 text-muted small">Posted by <a
+                                href={% url 'user_posts' post.author %}>{{post.author}}</a> on
+                            {{post.date_posted|date:"M d Y"}}</p>
+                    </div>
                 </div>
+                <!--/.Card-->
 
-                <!--Card content-->
-                <div class="card-body">
-                    <!--Title-->
-                    <h4 class="card-title">{{post.title}}</h4>
-                    <!--Text-->
-                    <p class="card-text">{{post.description}}</p>
-                    <a href="https://mdbootstrap.com/angular/" style="background: #3677bc; color:white;"
-                        class=" btn btn-md">Free
-                        download
-                        <i class="fas fa-download ml-2"></i>
-                    </a>
-                </div>
-                <a class="stretched-link" href="{% url 'full_post' post.id %}"></a>
             </div>
-            <!--/.Card-->
+            <!--Grid column-->
+            {% empty %}
+            <p class="text-center font-bold">No posts yet, Go ahead create one!</p>
+            {% endfor %}
+
 
         </div>
-        <!--Grid column-->
-        {% empty %}
-        <p class="text-center font-bold">No posts yet, Go ahead create one!</p>
-        {% endfor %}
 
+<hr>
+<h1 class="mb-4 text-left">
+    <strong>Recent course material uploads:</strong>
+</h1>
+
+<!--Grid row-->
+<div class="row mb-4 wow fadeIn">
+    {% for post in filepost.all|slice:":3"  %}
+    <!--Grid column-->
+    <div class="col-lg-4 col-md-12 mb-4">
+
+        <!--Card-->
+        <div class="card">
+
+            <!--Card image-->
+            <div class="view overlay p-2 mt-2">
+                <a href="{% url 'material' post.id %}">
+                <img responsive
+                    src="https://rampages.us/pharmaceutical-engineering/wp-content/themes/egr-faculty/images/mech-icon.png"
+                    class="card-img-top px-5" alt="">
+
+                <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <h4 class="card-title">{{post.title}}</h4>
+                <!--Text-->
+                <p class="card-text">{{post.description}}</p>
+                <a href="{% url 'material' post.id %}" style="background: #3677bc; color:white;"
+                    class=" btn btn-md">View Folder
+                    <i class="fas fa-folder ml-2"></i>
+                </a>
+<p class="float mt-2 mb--5 text-muted small">Posted by <a href={% url 'user_posts' post.author %}>{{post.author}}</a> on
+    {{post.date_posted|date:"M d Y"}}</p>
+            </div>
+            
+        </div>
+        <!--/.Card-->
 
     </div>
+    <!--Grid column-->
+    {% empty %}
+    <p class="text-center font-bold">No posts yet, Go ahead create one!</p>
+    {% endfor %}
 
 
+</div>
 
 
 
@@ -96,22 +139,7 @@
 
 
 </section>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    function getlabpost() {
 
-        $.ajax({
-            type: "GET",
-            url: "/notes/recentfileposts/",
-            success: function (data) {
-                $('.result').html(data)
-            }
-        });
-    }
-    $(document).ready(function () {
-        getlabpost()
-    });
-</script>
 
 <!--Section: Cards-->
 {% endblock %}

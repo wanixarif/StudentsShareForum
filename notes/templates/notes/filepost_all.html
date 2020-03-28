@@ -1,32 +1,55 @@
 {% extends "notes/base.html" %}
-{% block content %}
-<!--Section: Jumbotron-->
-<section class="card wow fadeIn"
-    style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+{% block content %}<!--Section: Cards-->
+<section class="text-center">
+<div class="card p-3 pt-4">
+    <div class="container">
+        <div class="row text-center">
+            <h5 class="text-center">Showing all posts under course material uploads</h5>
+            <div class="input-group-prepend ml-2 mr-2 ">
+                <button class="btn btn-primary btn-md m-0 px-3 py-2 z-depth-0 dropdown-toggle" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Branch</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'branch_material' "CSE" %}">CSE</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "ECE" %}">ECE</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "EEE" %}">EEE</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "MECH" %}">MECH</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "CV" %}">CV</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "BCA" %}">BCA</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "BBA" %}">BBA</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "MCA" %}">MCA</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "MBA" %}">MBA</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "LLB" %}">LLB</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "LLM" %}">LLM</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "B-ARCH" %}">B-ARCH</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "BBA-HEM" %}">BBA-HEM</a>
+                    <a class="dropdown-item" href="{% url 'branch_material' "B-DES" %}">B-DES</a>
+                </div>
+            </div>
+            <div class="input-group-prepend ml-2" >
+                <button class="btn btn-primary btn-md m-0 px-3 py-2 z-depth-0 dropdown-toggle" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Semester</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'semester_material' 1 %}">1</a>
+                    <a class="dropdown-item" href="{% url 'semester_material' 2 %}">2</a>
+                    <a class="dropdown-item" href="{% url 'semester_material' 3 %}">3</a>
+                    <a class="dropdown-item" href="{% url 'semester_material' 4 %}">4</a>
+                    <a class="dropdown-item" href="{% url 'semester_material' 5 %}">5</a>
+                    <a class="dropdown-item" href="{% url 'semester_material' 6 %}">6</a>
+                    <a class="dropdown-item" href="{% url 'semester_material' 7 %}">7</a>
+                    <a class="dropdown-item" href="{% url 'semester_material' 8 %}">8</a>
 
-    <!-- Content -->
-    <div class="card-body text-white text-center py-5 px-5 my-5">
 
-        <h1 class="mb-4">
-            <strong>Learn Bootstrap 4 with MDB</strong>
-        </h1>
-        <p class="mb-4">
-            <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video
-                and written
-                versions available. Create your own, stunning website.</strong>
-        </p>
-        <a " href=" {% url 'materials' %}" class="btn btn-outline-white btn-lg">Check out Materials
-            <i class="fas fa-graduation-cap ml-2"></i>
-        </a>
+
+                </div>
+            </div>
+
+        </div>
 
     </div>
-    <!-- Content -->
-</section>
-<!--Section: Jumbotron-->
-<hr class="my-5">
-<!--Section: Cards-->
-<section class="text-center">
-
+</div>
+<br>
     <!--Grid row-->
     <div class="row mb-4 wow fadeIn">
         {% for post in filepost.all  %}
@@ -55,6 +78,10 @@
                     <a href="{% url 'material' post.id %}" class=" btn btn-primary btn-md">View folder
                         <i class="fas fa-folder ml-2"></i>
                     </a>
+                                    <p class="float mt-2 mb--5 text-muted small">Posted by <a
+                                            href={% url 'user_posts' post.author %}>{{post.author}}</a> on
+                                        {{post.date_posted|date:"M d Y"}}</p>
+
                 </div>
 
             </div>

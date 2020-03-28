@@ -1,0 +1,21 @@
+{% extends "notes/base.html" %}
+{% block content %}
+<section class="text-center">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h4 class="jumbotron-heading">About to delete this post</h4>
+                <p>
+                    Are you sure?
+                </p>
+                <p>
+                    <button class="btn btn-danger" type="submit">Yes</button>
+                    <a class="btn btn-primary" href="{% url 'material' object.id %}">Cancel</a>
+                </p>
+
+            </div>
+        </section>
+    </form>
+</section>
+{% endblock content %}

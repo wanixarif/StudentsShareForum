@@ -18,18 +18,40 @@
                     <h1>{{ filepost.title }} </h1>
                 </div>
                 <div class="col-xl-4 col-md-4  col-sm-4 text-right col-xs-5">
-                    <p> {{ filepost.subject }}| {{ filepost.stream }} |
-                        {{ filepost.semester}} </p>
+                    <p> {{ filepost.subject }} | <a
+                            href="{% url 'branch_material' filepost.stream %}">{{ filepost.stream }}</a> |
+                        <a href="{% url 'semester_material' filepost.semester %}">Sem
+                            {{ filepost.semester}}</a> </p>
                 </div>
             </div>
             <div class="row">
 
                 <div class="col-md-12 col-lg-12">
-                    <p class="lead text-justify">{{ filepost.description }}</p>
+                    <p style="text-align: left;">{{ filepost.description }}</p>
+                    
                 </div>
-                <div class="col-md-12 col-lg-12">
-                    <p class="lead text-right"> ~ Posted by: {{ filepost.author }}</p>
-                </div>
+                <div class="row ml-auto">
+                    <div class="col-md-12 col-xs-12">
+                        <a download class="mb-2 mr-1" style="float:right " href="#"><i
+                                style="background: #00c853; border-radius:50% ; color:white; padding:8px; "
+                                class="success fas fa-download" "></i></a>
+                        <a class=" mb-2 mr-1" style="float:right "><i
+                                    style="background:#2962ff; border-radius:50% ; color:white; padding:8px; "
+                                    class="success fas fa-share" "></i></a>
+                        {% if object.author == user %}
+                            <a class=" mb-2 mr-1" style="float:right " href="{% url 'material_update' object.id %}"><i
+                                        style="background:#6200ea; border-radius:50% ; color:white; padding:8px; "
+                                        class="fas fa-pen"></i>
+                        </a>
+
+                        <a class=" mb-2 mr-1" style="float:right " href="{% url 'material_delete' object.id %}"><i
+                                style="background:#ff1744; border-radius:50% ; color:white; padding:8px; "
+                                class="fas fa-trash"></i>
+                        </a>
+
+                        {% endif %}
+
+                    </div>
             </div>
 
         </div>

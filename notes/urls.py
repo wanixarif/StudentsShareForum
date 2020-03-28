@@ -19,24 +19,40 @@ from . import views
 from .views import *
 
 urlpatterns = [
-    path('', index.as_view(), name='index'),
+    path('', Posts.as_view(), name='index'),
     path('about/', views.about, name="about"),
+
     path('materials/', materiallistview.as_view(), name="materials"),
     path('labposts/', labpostlistview.as_view(), name="labposts"),
+
     path('fullpost/<int:pk>', fullpost.as_view(), name='full_post'),
-    path('newpost/', PostCreateView.as_view(), name="newpost"),
     path('material/<int:pk>', filefullpost.as_view(), name='material'),
+
+    path('newpost/', PostCreateView.as_view(), name="newpost"),
     path('materialpost/', FilePostCreateView.as_view(), name="materialpost"),
-    path('recentfileposts/', recentfileposts.as_view(), name='recentfileposts'),
+
+
     path("notes/fullpost/<int:pk>/update",
          PostUpdateView.as_view(), name="update"),
+    path("notes/material/<int:pk>/update",
+         FilePostUpdateView.as_view(), name="material_update"),
+
+
     path("notes/fullpost/<int:pk>/delete",
          PostDeleteView.as_view(), name="delete"),
+    path("notes/material/<int:pk>/delete",
+         FilePostDeleteView.as_view(), name="material_delete"),
+
+
     path("user/<str:username>", UserPostListView.as_view(), name="user_posts"),
 
     path("category/sem/<int:semester>",
          SemesterLabListView.as_view(), name="semester_lab"),
     path("category/branch/<str:branch>",
          BranchLabListView.as_view(), name="branch_lab"),
+    path("material/sem/<int:semester>",
+         SemesterMaterialListView.as_view(), name="semester_material"),
+    path("material/branch/<str:branch>",
+         BranchMaterialListView.as_view(), name="branch_material"),
 
 ]
