@@ -1,11 +1,15 @@
 {% extends "notes/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 
-<h2>You are now logged out</h2>
-
-<div class="col-md-4">
-    <small class="text-muted">Login again <a href={% url 'login' %}> Login</a></small>
+<br><br><br>
+<div class="card ml-auto mr-auto " style="max-width:430px;">
+    <!-- Default form login -->
+    <h3>Logged out successfully.</h3>
+    <p><a href="{% url 'login' %}">Log In</a></p>
 
 </div>
+
+<br><br><br>
 
 {% endblock content %}
