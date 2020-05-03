@@ -4,6 +4,13 @@ from django.utils import timezone
 from django.urls import reverse
 from django.core.files import File
 
+from pygments import highlight  # new
+from pygments.formatters.html import HtmlFormatter  # new
+from pygments.lexers import  guess_lexer  # new
+from pygments.styles import get_all_styles
+
+
+STYLE_CHOICES = sorted((item, item) for item in get_all_styles())
 # Create your models here.
 SEMESTER = (
     (1, 1),
@@ -84,11 +91,25 @@ class LabPost(models.Model):
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    language = models.CharField(
-        default='plaintext', max_length=30, choices=CHOICES)
-
     postbody = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
+    highlighted = models.TextField()  # new
+    style = models.CharField(choices=STYLE_CHOICES,
+                             default='perldoc', max_length=100)
+
+    def save(self, *args, **kwargs):  # new
+        """
+        Use the `pygments` library to create a highlighted HTML
+        representation of the code snippet.
+        """
+        lexer = guess_lexer(self.postbody)
+
+        # linenos = 'table' if self.linenos else False
+        linenos = 'table'
+        formatter = HtmlFormatter(style=self.style,
+                                  full=True)
+        self.highlighted = highlight(self.postbody, lexer, formatter)
+        super(LabPost, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

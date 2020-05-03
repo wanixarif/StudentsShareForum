@@ -65,6 +65,18 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("admin/", admin.site.urls),
+    path(
+        'password-change/',
+        auth_views.PasswordChangeView.as_view(
+            template_name='userlogin/password_change.html'),name="password_change",
+    ),
+    path(
+        'password-change-done/',
+        auth_views.PasswordChangeDoneView.as_view(
+            template_name='userlogin/password_change_done.html'), name="password_change_done",
+    ),
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

@@ -1,6 +1,6 @@
 {% extends "notes/base.html" %}
 {% load static %}
-
+{% load markdownify %}
 
 <!--Main Navigation-->
 {% block content %}
@@ -34,13 +34,13 @@
 
             <!--Card content-->
             <div class="card-body">
-                <input type="text" style="width: 0rem; height:0rem; border:none;" class="p-0 form-control disabled"
-                    value="{{labpost.postbody}}" id="myInput">
+                <textarea style="width: 0rem; height:0rem; border:none;" class="p-0 form-control disabled"
+                    id="x">{{labpost.postbody|safe}}</textarea>
                 <p class="h3 my-2 text-uppercase">
                     {{labpost.title}}
                     <small style=" font-size:15px; float: right;" class="text-upper bold lead">
-                      {{labpost.subject}} | <a href="{% url 'branch_lab' labpost.stream %}">{{labpost.stream}}</a>
-                      | <a href="{% url 'semester_lab' labpost.semester %}">SEM {{labpost.semester}}</a>
+                        {{labpost.subject}} | <a href="{% url 'branch_lab' labpost.stream %}">{{labpost.stream}}</a>
+                        | <a href="{% url 'semester_lab' labpost.semester %}">SEM {{labpost.semester}}</a>
                     </small>
                 </p><br>
                 <p class="p-2 text-justify text-monospace">{{labpost.description}}</p>
@@ -58,7 +58,7 @@
                                     style="background:#2962ff; border-radius:50% ; color:white; padding:8px; "
                                     class="success fas fa-share" "></i></a>
                         {% if object.author == user %}
-                            <a class="  mb-2 mr-1" style="float:right " href="{% url 'update' object.id %}"><i
+                            <a class=" mb-2 mr-1" style="float:right " href="{% url 'update' object.id %}"><i
                                         style="background:#6200ea; border-radius:50% ; color:white; padding:8px; "
                                         class="fas fa-pen"></i>
                         </a>
@@ -78,7 +78,7 @@
 
                     </div>
                     <div class=" col-xl-12 col-md-12 col-xs-12">
-                        <pre><code class="{{labpost.language}}">{{labpost.postbody|linebreaks}}</code></pre>
+                        {{labpost.highlighted|safe}}
 
                     </div>
                 </div>
@@ -131,13 +131,12 @@
 
                     <div class="media d-block d-md-flex mt-3">
                         <img class="d-flex mb-3 mx-auto z-depth-1" src="{{labpost.author.profile.image.url}}"
-                            alt="Generic placeholder image"
-                            style="width: 100px;">
+                            alt="Generic placeholder image" style="width: 100px;">
                         <div class="media-body text-center text-md-left ml-md-3 ml-0">
                             <h5 class="mt-0 font-weight-bold">About {{labpost.author}}
                             </h5>
                             Add about in profiles when creating profiles.
-                            
+
                         </div>
                     </div>
 
@@ -170,7 +169,7 @@
 <script>
     function myFunction() {
 
-        var copyText = document.getElementById("myInput");
+        var copyText = document.getElementById("x");
 
         /* Select the text field */
         copyText.select();

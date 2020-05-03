@@ -58,8 +58,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):  # LoginRequiredMixin,
         "semester",
         "stream",
         "subject",
-
-        "language",
         "file",
         "postbody",
 
@@ -142,7 +140,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         "semester",
         "stream",
         "subject",
-        "language",
         "file",
         "postbody",
     ]
